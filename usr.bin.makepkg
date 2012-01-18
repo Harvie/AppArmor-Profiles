@@ -14,5 +14,6 @@
   /home/*/.ccache/** rwix,
   /home/*/{Temp,Work/PKGBUILDs}/** rw,
   /tmp/** rwkix,
+  /var/abs/local/** rwkix,
 
 }
