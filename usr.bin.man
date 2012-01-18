@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 10:55:22 2012
+# Last Modified: Wed Jan 18 13:31:45 2012
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2005 Novell/SUSE
@@ -14,6 +14,7 @@
 
 /usr/bin/man flags=(complain) {
   #include <abstractions/base>
+  #include <abstractions/bash>
   #include <abstractions/nameservice>
   #include <abstractions/user-manpages>
 
@@ -22,6 +23,7 @@
 
 
 
+  /bin/less rix,
   /etc/man_db.conf r,
   /opt/java/jre/man/ r,
   /opt/java/jre/man/* rk,
@@ -31,9 +33,12 @@
   /opt/kde/man/ r,
   /opt/kde/man/*/ r,
   /opt/qt/man/ r,
-  /opt/qt/man/* r,
+  /opt/qt/man/* rk,
   /opt/qt/man/*/ r,
   /root/.lesshst w,
+  /usr/bin/nroff rix,
+  /usr/bin/preconv rix,
+  /usr/bin/tbl rix,
   /usr/lib/man-db/man Px,
   /usr/local/man/ r,
   /usr/man/ r,

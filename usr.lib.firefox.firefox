@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 14:47:08 2012
+# Last Modified: Wed Jan 18 13:31:46 2012
 #include <tunables/global>
 
 /usr/lib/firefox/firefox {
@@ -10,8 +10,10 @@
 
   deny /dev/tty rw,
 
+  / r,
   /bin/ps r,
   /etc/** r,
+  /home/*/ r,
   /home/*/.Xauthority r,
   /home/*/.adobe/**/ rw,
   /home/*/.asoundrc.asoundconf r,
@@ -21,6 +23,9 @@
   /home/*/.macromedia/** rw,
   /home/*/.mozilla/**/ r,
   /home/*/.mozilla/firefox/** mrwk,
+  /home/*/Desktop/** rwk,
+  /home/*/Downloads/** rwk,
+  /home/*/Temp/** rwk,
   /opt/java/** r,
   /opt/kde/share/** r,
   /proc/** r,
