@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 09:53:41 2012
+# Last Modified: Wed Jan 18 15:27:42 2012
 # Author: Thomas Mudrunka
 
 #include <tunables/global>
@@ -38,7 +38,7 @@
   /home/*/.themes/** r,
   /home/*/Work/GIT/plugins/chrome-extensions/** r,
   /home/*/private/dotfiles/.config/chromium/** rwk,
-  /opt/java/** r,
+  /opt/java/** mr,
   /opt/kde/share/** r,
   /proc/ r,
   /proc/** rw,
@@ -47,6 +47,7 @@
   /usr/lib/chromium/chromium rix,
   /usr/lib/chromium/chromium-sandbox rix,
   /usr/lib/lib*so* mr,
+  /var/db/nscd/* r,
   /var/tmp/* rw,
 
 }

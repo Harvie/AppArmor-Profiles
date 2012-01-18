@@ -1,8 +1,9 @@
-# Last Modified: Wed Jan 18 09:14:15 2012
+# Last Modified: Wed Jan 18 14:53:30 2012
 #include <tunables/global>
 
 /usr/bin/epiphany {
   #include <abstractions/base>
+  #include <abstractions/consoles>
   #include <abstractions/enchant>
   #include <abstractions/gnome>
   #include <abstractions/nameservice>
@@ -12,6 +13,7 @@
 
 
   / r,
+  /bin/ps r,
   /dev/ r,
   /dev/**/ r,
   /etc/** r,
@@ -27,5 +29,6 @@
   /tmp/** m,
   /usr/include/** r,
   /usr/share/** r,
+  /var/db/nscd/* r,
 
 }
