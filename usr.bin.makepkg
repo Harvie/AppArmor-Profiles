@@ -1,0 +1,18 @@
+# Last Modified: Wed Jan 18 13:58:35 2012
+# This profile is made for users that are building
+# AUR packages from untrusted PKGBUILDs often
+
+#include <tunables/global>
+
+/usr/bin/makepkg {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+
+  /** rix,
+  /etc/** r,
+  /home/*/.ccache/** rwix,
+  /home/*/{Temp,Work/PKGBUILDs}/** rw,
+  /tmp/** rwkix,
+
+}

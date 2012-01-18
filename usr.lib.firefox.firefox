@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 13:31:46 2012
+# Last Modified: Wed Jan 18 13:50:50 2012
 #include <tunables/global>
 
 /usr/lib/firefox/firefox {
@@ -23,8 +23,11 @@
   /home/*/.macromedia/** rw,
   /home/*/.mozilla/**/ r,
   /home/*/.mozilla/firefox/** mrwk,
+  /home/*/Desktop/ r,
   /home/*/Desktop/** rwk,
+  /home/*/Downloads/ r,
   /home/*/Downloads/** rwk,
+  /home/*/Temp/ r,
   /home/*/Temp/** rwk,
   /opt/java/** r,
   /opt/kde/share/** r,
