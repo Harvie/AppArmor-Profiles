@@ -1,0 +1,50 @@
+# Last Modified: Wed Jan 18 14:06:39 2012
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+#
+# If you wish to use /etc/sysconfig/network/scripts/dhcpcd-hook, be sure
+# to configure a subdomain profile for it.
+#
+# Note that dhcpcd (at least as distributed by SuSE) offers to rewrite
+# ntp.conf and yp.conf in addition to resolv.conf.
+#
+
+#include <tunables/global>
+
+/sbin/dhcpcd {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  capability dac_override,
+  capability net_admin,
+  capability net_raw,
+  capability sys_admin,
+
+
+
+  /bin/bash mrix,
+  /bin/touch mrix,
+  /dev/tty rw,
+  /etc/* r,
+  /etc/dhcpc/* rwl,
+  /etc/init.d/syslog Ux,
+  /etc/ntp.conf{,.sv} rwl,
+  /etc/resolv.conf{,.sv} rwl,
+  /etc/sysconfig/network/scripts/dhcpcd-hook mrix,
+  /etc/yp.conf{,.sv} rwl,
+  /proc/sys/** w,
+  /sbin/dhcpcd mrix,
+  /sbin/ifup Ux,
+  /sbin/modify_resolvconf mrix,
+  /usr/lib/networkmanager/nm-dhcp-client.action rix,
+  /var/lib/dhcpcd/* rw,
+  /{,var/}run/dhcpcd-*.pid rwlk,
+
+}

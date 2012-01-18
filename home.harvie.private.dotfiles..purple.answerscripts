@@ -1,0 +1,17 @@
+# Last Modified: Wed Jan 18 12:35:39 2012
+#include <tunables/global>
+
+/home/harvie/private/dotfiles/.purple/answerscripts flags=(complain) {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/ubuntu-browsers.d/plugins-common>
+
+
+
+  /** rix,
+  /home/*/private/dotfiles/.purple/* rwix,
+  /home/*/private/dotfiles/.purple/answerscripts.d/ r,
+  /home/*/{,private/dotfiles/.purple/}answerscripts.d/* rix,
+
+}

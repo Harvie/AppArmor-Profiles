@@ -1,0 +1,73 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# Note that this profile doesn't include any NetDomain rules; dhclient uses
+# raw sockets, and thus cannot be confined with NetDomain
+#
+# Should these programs have their own domains?
+# /bin/ps                     mrix,
+# /sbin/arp                   mrix,
+# /usr/bin/dig                mrix,
+# /usr/bin/uptime             mrix,
+# /usr/bin/vmstat             mrix,
+# /usr/bin/w                  mrix,
+
+#include <tunables/global>
+
+/sbin/dhclient {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/nameservice>
+
+  network packet packet,
+  network packet raw,
+
+  /sbin/dhclient              mrix,
+
+  /bin/bash                   mrix,
+  /bin/df                     mrix,
+  /bin/netstat                Px,
+  /bin/ps                     mrix,
+  /dev/random                 r,
+  /etc/dhclient.conf          r,
+  @{PROC}/                    r,
+  @{PROC}/interrupts          r,
+  @{PROC}/*/net/dev           r,
+  @{PROC}/rtc                 r,
+  # following rule shouldn't work, self is a symlink
+  @{PROC}/self/status         r,
+  /sbin/arp                   mrix,
+  /usr/bin/dig                mrix,
+  /usr/bin/uptime             mrix,
+  /usr/bin/vmstat             mrix,
+  /usr/bin/w                  mrix,
+  /var/lib/dhcp/dhclient.leases     rw,
+  /var/lib/dhcp/dhclient-*.leases   rw,
+  /var/log/lastlog            r,
+  /var/log/messages           r,
+  /var/log/wtmp               r,
+  /{,var/}run/dhclient.pid       rw,
+  /{,var/}run/dhclient-*.pid     rw,
+  /var/spool                  r,
+  /var/spool/mail             r,
+
+  # This one will need to be fleshed out depending on what the user is doing
+  /sbin/dhclient-script mrpix,
+
+  /bin/grep mrix,
+  /bin/sleep mrix,
+  /etc/sysconfig/network/dhcp r,
+  /etc/sysconfig/network/scripts/functions.common r,
+  /etc/sysconfig/network/scripts/functions r,
+  /sbin/ip mrix,
+  /usr/lib/NetworkManager/nm-dhcp-client.action mrix,
+  /var/lib/dhcp/* rw,
+  /{,var/}run/nm-dhclient-*.conf r,
+
+}

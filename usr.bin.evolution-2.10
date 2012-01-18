@@ -1,0 +1,156 @@
+# vim:syntax=apparmor
+# Last Modified: Wed Sep  7 21:32:52 2005
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ----------------------------------------------------------------------
+#
+#
+# Profile for Evolution 2.4:
+#
+#   Covered scenarios:
+#
+#    Receive Mail: 
+#            IMAP/POP/Local
+#            Mark mail as junk mail
+#            Print mail message with lpr local
+#            Print mail message with cups remote
+#            View pdf attachements
+#            Decrypt using gpg
+#
+#    Send Mail: 
+#            SMTP/Sendmail
+#            Encrypt/Sign using gpg
+# 
+#    Contacts: 
+#            Add/Edit/Delete local contacts
+# 
+#    Calendaring:
+#            Add Local calendar
+#            Add|Edit|Delete event to|in|from local calendar
+#            Publish free/busy information to webdav server
+#            Subscribe to webcal:// calendar
+# 
+#
+
+#include <tunables/global>
+
+/usr/bin/evolution-2.10 {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/fonts>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/perl>
+  #include <abstractions/gnome>
+  #include <abstractions/user-mail>
+  #include <abstractions/user-write>
+
+  capability ipc_lock,
+  capability setuid,
+
+  /bin/basename mixr,
+  /bin/bash mix,
+  /bin/grep mixr,
+  /bin/netstat mixr,
+  /dev/random r,
+  /etc/cups/client.conf r,
+  /etc/cups/lpoptions r,
+  /etc/cups/printcap r,
+  /etc/mail/spamassassin r,
+  /etc/mail/spamassassin/* r,
+  /etc/mtab r,
+  /etc/gnome-vfs-*/modules r,
+  /etc/gnome-vfs-*/modules/*.conf r,
+  /etc/pango/*.modules r,
+  /etc/opt/kde3/share/applications r,
+  /etc/opt/kde3/share/applications/kde r,
+  /etc/opt/kde3/share/applications/kde/*.desktop r,
+  /etc/opt/kde3/share/applications/mimeinfo.cache r,
+  /etc/rpc r,
+  /etc/xdg/menus/*.menu r,
+  /etc/xdg/menus/applications-merged r,
+  /etc/xdg/menus/applications-merged/*.menu r,
+  /etc/xml/*.xml r,
+  /etc/xml/catalog r,
+
+  @{HOMEDIRS} r,
+  @{HOMEDIRS}/* r,
+  @{HOME}* r,
+  @{HOME}/.AbiSuite/* r,
+  @{HOME}/.AbiSuite/AbiWord.Profile rw,
+  @{HOME}/.camel_certs/* rw,
+  @{HOME}/.evolution-composer.autosave-* lrw,
+  @{HOME}/.evolution/*.db rw,
+  @{HOME}/.evolution/cache/tmp r,
+  @{HOME}/.evolution/cache/tmp/** lrw,
+  @{HOME}/.evolution/calendar/config/** lrw,
+  @{HOME}/.evolution/calendar/local/** lrw,
+  @{HOME}/.evolution/camel-cert.db~ lrw,
+  @{HOME}/.evolution/mail/** lrw,
+  @{HOME}/.evolution/tasks/local/system/*.ics rw,
+  @{HOME}/.evolution/tasks/local/system/*.ics~ lrw,
+  @{HOME}/.gaim/blist.xml r,
+  @{HOME}/.gnome2/evolution-* lw,
+  @{HOME}/.gnome2/gnome-pilot.d/gpilotd rw,
+  @{HOME}/.gnome2/yelp rw,
+  @{HOME}/.gnome2/yelp.d/mozilla/** lrw,
+  @{HOME}/.gnome2_private w,
+  @{HOME}/.gnome2_private/Evolution rw,
+  @{HOME}/.kde/share/config/gtkrc-2.0 r,
+  @{HOME}/.mozilla/pluginreg.dat r,
+  @{HOME}/.qt/** lrw,
+  @{HOME}/.recently-used rw,
+
+  /usr/bin/evolution-2.10 mixr,
+  /usr/bin/firefox Pxr,
+  /usr/lib/** r,
+  /usr/lib/GConf/2/gconfd-2 Px,
+  /usr/lib64/GConf/2/gconfd-2 Px,
+  /usr/lib/evolution-data-server*/* r,
+  /usr/lib/evolution-data-server*/evolution-data-server-* Pxr,
+  /usr/lib/evolution/** r,
+  /usr/lib/evolution/*/evolution-alarm-notify mixr,
+  /usr/lib/gnome-** r,
+  /usr/lib/gnome-spell/libgnome-spell-component-*.so mr,
+  /usr/lib/gtk-** r,
+  /usr/lib/gtkhtml/libgnome-gtkhtml-editor-*.so mr,
+  /usr/lib/libgnomeui/gnome_segv2 mixr,
+  /usr/lib/pango/** r,
+  /usr/share/** r,
+  /opt/kde3/share/** r,
+  /opt/mozilla/bin/mozilla.sh Pxr,
+  @{PROC}/*/cmdline r,
+  @{PROC}/net r,
+  @{PROC}/net/* r,
+  /tmp r,
+  /tmp/* lrw,
+  /tmp/.ICE-unix/* w,
+  /tmp/gconfd-** r,
+  /tmp/orbit** lrw,
+  /usr/lib/aspell-** r,
+  /usr/lib/enchant r,
+  /usr/lib/enchant/*.* mr,
+  /usr/lib/jvm/java-*/jre/lib/fonts r,
+  /usr/lib/jvm/java-*/jre/lib/fonts/* r,
+  /usr/lib/ooo-2.0/share/fonts r,
+  /usr/lib/ooo-2.0/share/fonts/** r,
+  /usr/share/applications r,
+  /usr/share/applications/*.desktop r,
+  /usr/share/applications/mimeinfo.cache r,
+  /usr/share/icons r,
+  /usr/share/mime/** r,
+  /usr/share/spamassassin r,
+  /usr/share/spamassassin/*.cf r,
+  /usr/share/spamassassin/triplets.txt r,
+  /usr/share/xml/docbook/schema/** r,
+  /usr/X11R6/lib/Acrobat7/Resource/Font r,
+  /usr/X11R6/lib/Acrobat7/Resource/Font/** r,
+  /var/tmp r,
+}

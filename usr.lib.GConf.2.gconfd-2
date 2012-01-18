@@ -1,0 +1,34 @@
+# vim:syntax=apparmor
+# Last Modified: Thu Sep  1 16:16:34 2005
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/lib/GConf/2/gconfd-2 {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
+
+  /etc/gconf/2/path r,
+  /etc/gconf/gconf.xml.defaults r,
+  /etc/gconf/gconf.xml.defaults/** r,
+  /etc/gconf/gconf.xml.defaults/schemas/** r,
+  /etc/gconf/gconf.xml.mandatory r,
+
+  @{HOME}/.gconf r,
+  @{HOME}/.gconf/** lrw,
+  @{HOME}/.gconfd/** lrw,
+
+  /usr/lib/GConf/2/gconfd-2 rmix,
+  /usr/lib/GConf/2/libgconfbackend-xml.so mr,
+  /usr/lib64/GConf/2/libgconfbackend-xml.so mr,
+  /usr/share/locale/** r,
+}

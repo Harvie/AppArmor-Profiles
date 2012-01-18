@@ -1,0 +1,44 @@
+# vim:syntax=apparmor
+# Last Modified: Thu Aug 25 13:37:56 2005
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/bin/wireshark {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/gnome>
+  #include <abstractions/user-write>
+  #include <abstractions/X>
+
+  capability net_raw,
+
+  /etc/ethers r,
+
+  @{HOME}/.wireshark/* rw,
+  @{HOME}/.fonts.cache-* r,
+
+  /etc/pango/pango.modules r,
+  /usr/lib/gtk-*/*/loaders/* mr,
+  /usr/share/* r,
+  /usr/share/icons/** r,
+  /usr/share/mime/* r,
+  /usr/lib/firefox/firefox.sh rPx,
+  /usr/bin/wireshark mixr,
+  /usr/share/icons r,
+  /usr/share/mime/* r,
+  /usr/share/snmp/mibs r,
+  /usr/share/snmp/mibs/* r,
+  /usr/share/snmp/mibs/.index rw,
+}

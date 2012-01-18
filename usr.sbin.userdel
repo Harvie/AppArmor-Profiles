@@ -1,0 +1,51 @@
+# vim:syntax=apparmor
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/sbin/userdel {
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/perl>
+  #include <abstractions/nameservice>
+  #include <abstractions/wutmp>
+
+  capability chown,
+  capability dac_override,
+  capability dac_read_search,
+  capability sys_resource,
+
+  /bin/cat rmix,
+  /bin/bash rmix,
+  /dev/log w,
+  /etc/.pwd.lock rw,
+  /etc/cron.deny r,
+  /etc/default/useradd r,
+  /etc/group* rwl,
+  /etc/gshadow* rwl,
+  /etc/login.defs r,
+  /etc/passwd* rwl,
+  /etc/shadow* rwl,
+  /etc/pwdutils/logging r,
+  @{HOMEDIRS}**  rwl,
+  @{PROC}/[0-9]*/mounts r,
+  /usr/bin/crontab rmix,
+  /usr/lib*/pwdutils/*.so.* mr,
+  /usr/sbin/userdel rmix,
+  /usr/sbin/userdel-post.local rmix,
+  /usr/sbin/userdel-pre.local rmix,
+  /usr/sbin/userdel rmix,
+  # XXX
+  /{,var/}run/nscd.pid r,
+  /var/spool/mail/* wl,
+}

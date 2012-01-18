@@ -1,0 +1,63 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2006 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# vim:syntax=apparmor
+
+#include <tunables/global>
+
+/usr/sbin/squid {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/kerberosclient>
+  #include <abstractions/nameservice>
+
+  capability setgid,
+  capability setuid,
+
+  /usr/lib/squid/* rmix,
+  /usr/sbin/squid rmix,
+  /usr/sbin/unlinkd mixr,
+
+  /var/cache/squid/** lrw,
+
+  /dev/tty rw,
+  /etc/mtab r,
+  /etc/squid/* r,
+  @{PROC}/[0-9]*/mounts r,
+  @{PROC}/mounts r,
+  /usr/share/squid/** r,
+  /var/log/squid/access.log w,
+  /var/log/squid/cache.log rw,
+  /var/log/squid/store.log w,
+  /{,var/}run/squid.pid lrw,
+
+  /usr/sbin/digest_pw_auth   rmix,
+  /usr/sbin/diskd   rmix,
+  /usr/sbin/getpwname_auth   rmix,
+  /usr/sbin/ip_user_check   rmix,
+  /usr/sbin/msnt_auth   rmix,
+  /usr/sbin/ncsa_auth   rmix,
+  /usr/sbin/no_check.pl   rmix,
+  /usr/sbin/ntlm_auth   rmix,
+  /usr/sbin/pam_auth   rmix,
+  /usr/sbin/rcsquid   rmix,
+  /usr/sbin/smb_auth   rmix,
+  /usr/sbin/smb_auth.pl   rmix,
+  /usr/sbin/smb_auth.sh   rmix,
+  /usr/sbin/squid   rmix,
+  /usr/sbin/squid_ldap_auth   rmix,
+  /usr/sbin/squid_ldap_group   rmix,
+  /usr/sbin/squid_ldapauth   rmix,
+  /usr/sbin/squid_unix_group   rmix,
+  /usr/sbin/squidclient   rmix,
+  /usr/sbin/unlinkd   rmix,
+  /usr/sbin/wbinfo_group.pl   rmix,
+  /usr/sbin/yp_auth   rmix,
+
+}

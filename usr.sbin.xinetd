@@ -1,0 +1,71 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/sbin/xinetd {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+
+  /etc/hosts.allow                 r,
+  /etc/hosts.deny                  r,
+  /etc/xinetd.conf                 r,
+  /etc/xinetd.d                    r,
+  /etc/xinetd.d/*                  r,
+  /usr/sbin/xinetd                 rmix,
+  /var/log/xinetd.log              w,
+  /{,var/}run/xinetd.pid              rwl,
+
+  /bin/netstat                     Px,
+  /bin/ps                          mix,
+  /sbin/linuxconf                  Px,
+  /usr/bin/cvs                     Px,
+  /usr/bin/fam                     Px,
+  /usr/bin/kotalkd                 Px,
+  /usr/bin/ktalkd                  Px,
+  /usr/bin/nrpe                    Px,
+  /usr/bin/rsync                   Px,
+  /usr/kerberos/sbin/ftpd          Px,
+  /usr/kerberos/sbin/klogind       Px,
+  /usr/kerberos/sbin/kshd          Px,
+  /usr/kerberos/sbin/telnetd       Px,
+  /usr/lib/amanda/amandad          Px,
+  /usr/lib/amanda/amidxtaped       Px,
+  /usr/lib/amanda/amindexd         Px,
+
+  /usr/lib64/cups/daemon/cups-lpd  Px,
+  /usr/lib/cups/daemon/cups-lpd    Px,
+
+  /usr/sbin/dbskkd-cdb             Px,
+  /usr/sbin/imapd                  Px,
+  /usr/sbin/in.comsat              Px,
+  /usr/sbin/in.fingerd             Px,
+  /usr/sbin/in.ftpd                Px,
+  /usr/sbin/in.httpd-redir         Px,
+  /usr/sbin/in.ntalkd              Px,
+  /usr/sbin/in.rexecd              Px,
+  /usr/sbin/in.rlogind             Px,
+  /usr/sbin/in.rshd                Px,
+  /usr/sbin/in.telnetd             Px,
+  /usr/sbin/in.tftpd               Px,
+  /usr/sbin/ipop2d                 Px,
+  /usr/sbin/ipop3d                 Px,
+  /usr/sbin/popper                 Px,
+  /usr/sbin/rsyncd                 Px,
+  /usr/sbin/swat                   Px,
+  /usr/sbin/tcpd                   Px,
+  /usr/sbin/vsftpd                 Px,
+  /usr/X11R6/bin/vnc_inetd_httpd   Px,
+  /usr/X11R6/bin/Xvnc              Px,
+}

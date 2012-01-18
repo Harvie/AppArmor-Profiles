@@ -1,0 +1,32 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# vim:syntax=apparmor
+# Last Modified: Mon Mar 13 15:55:30 2006
+
+#include <tunables/global>
+
+/sbin/resmgrd {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+
+  capability fowner,
+  capability chown,
+
+  /dev/** rw,
+  /etc/resmgr.conf r,
+  /etc/resmgr.conf.d/ r,
+  /etc/resmgr.conf.d/*.conf r,
+  /sbin/resmgrd r,
+  /{,var/}run/.resmgr_socket lrw,
+  /{,var/}run/resmgr.pid lrw,
+  /{,var/}run/fence* lrw,
+  /{,var/}run/resmgr/classes/** wl,
+  /{run,var}/lock/LCK* lrw,
+}

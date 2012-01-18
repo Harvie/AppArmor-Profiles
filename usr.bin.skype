@@ -1,0 +1,40 @@
+# Last Modified: Mon Oct 26 13:29:13 2009
+# REPOSITORY: http://apparmor.test.opensuse.org/backend/api draglor 53
+# Additional profiling based on work by Андрей Калинин, LP: #226624
+#include <tunables/global>
+/usr/bin/skype {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/fonts>
+  #include <abstractions/freedesktop.org>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/nvidia>
+  #include <abstractions/user-tmp>
+  #include <abstractions/X>
+
+  # are these needed?
+  /proc/*/cmdline r,
+  /dev/video* mrw,
+  /var/cache/libx11/compose/* r,
+
+  # should this be in a separate KDE abstraction?
+  @{HOME}/.kde/share/config/kioslaverc r,
+
+  /usr/bin/skype mr,
+  /usr/share/skype/** kr,
+  /usr/share/skype/sounds/*.wav kr,
+
+  @{HOME}/.Skype/   rw,
+  @{HOME}/.Skype/** krw,
+  @{HOME}/.config/* kr,
+
+  @{HOME}/.mozilla/ r,
+  @{HOME}/.mozilla/*/ r,
+  @{HOME}/.mozilla/*/*/ r,
+  @{HOME}/.mozilla/*/*/bookmarkbackups/ r,
+  @{HOME}/.mozilla/*/*/chrome/ r,
+  @{HOME}/.mozilla/*/*/extensions/ r,
+  @{HOME}/.mozilla/*/*/prefs.js r,
+}
+

@@ -1,0 +1,50 @@
+# vim:syntax=apparmor
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/sbin/useradd {
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/perl>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/wutmp>
+
+  capability chown,
+  capability dac_override,
+  capability fowner,
+  capability fsetid,
+  capability sys_resource,
+
+  /bin/bash mixr,
+  /etc/.pwd.lock rwk,
+  /etc/default/useradd r,
+  /etc/group* rwl,
+  /etc/gshadow* rwl,
+  /etc/login.defs r,
+  /etc/passwd* rwl,
+  /etc/shadow* rwl,
+  /etc/pwdutils/logging r,
+  /etc/skel r,
+  /etc/skel/** r,
+  @{HOMEDIRS}**  rw,
+  @{PROC}/[0-9]*/mounts r,
+  @{PROC}/filesystems r,
+  /usr/lib*/pwdutils/*so* mr,
+  /usr/sbin/adduser rmix,
+  /usr/sbin/useradd rmix,
+  /usr/sbin/useradd.local rmix,
+  /var/log/faillog rw,
+  /{,var/}run/nscd.pid rw,
+  /var/spool/mail/* rw,
+}

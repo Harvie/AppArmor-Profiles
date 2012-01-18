@@ -1,0 +1,21 @@
+# Last Modified: Tue Jan 25 16:48:30 2011
+#include <tunables/global>
+
+# dhclient-script will call plugins from /etc/netconfig.d, so this
+# will need to be extended on a per-site basis.
+
+/sbin/dhclient-script {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+
+  /bin/bash rix,
+  /bin/grep rix,
+  /bin/sleep rix,
+  /bin/touch rix,
+  /dev/.sysconfig/network/** r,
+  /etc/netconfig.d/* mrix,
+  /etc/sysconfig/network/** r,
+  /sbin/dhclient-script r,
+  /sbin/ip rix,
+}

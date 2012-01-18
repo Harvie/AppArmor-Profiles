@@ -1,0 +1,61 @@
+# Last Modified: Wed Jan 18 14:45:09 2012
+#include <tunables/global>
+
+/usr/sbin/cupsd {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/dbus>
+  #include <abstractions/nameservice>
+  #include <abstractions/perl>
+
+  capability chown,
+  capability dac_override,
+  capability fowner,
+  capability fsetid,
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+
+
+
+  /bin/bash rix,
+  /bin/cat ix,
+  /dev/lp0 rw,
+  /dev/tty rw,
+  /dev/ttyS? w,
+  /etc/** r,
+  /etc/cups rw,
+  /etc/cups/*.conf* rw,
+  /etc/cups/certs w,
+  /etc/cups/certs/* w,
+  /etc/cups/ppd rw,
+  /etc/cups/printcap rw,
+  /etc/cups/ssl rw,
+  /etc/cups/yes/* rw,
+  /etc/printcap rw,
+  /proc/meminfo r,
+  /proc/sys/dev/parport/** r,
+  /sys/class/usb r,
+  /usr/bin/foomatic-rip rix,
+  /usr/bin/gs ix,
+  /usr/bin/perl ix,
+  /usr/bin/smbspool rix,
+  /usr/lib/cups/backend/* rix,
+  /usr/lib/cups/filter/* rix,
+  /usr/lib/ghostscript/** m,
+  /usr/lib64/ghostscript/** m,
+  /usr/lib{,32,64}/** mr,
+  /usr/sbin/cupsd mrix,
+  /usr/share/cups/** r,
+  /usr/share/ghostscript/** r,
+  /var/cache/cups/ rw,
+  /var/cache/cups/** rw,
+  /var/log/cups/* rw,
+  /var/spool/cups rw,
+  /var/spool/cups/** rw,
+  /var/spool/cups/tmp w,
+  /var/spool/cups/tmp/ r,
+  /{,var/}run/cups/ rw,
+  /{,var/}run/cups/** rw,
+
+}

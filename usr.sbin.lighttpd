@@ -1,0 +1,77 @@
+# Last Modified: Wed Jan 18 10:48:17 2012
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/sbin/lighttpd {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/perl>
+  #include <abstractions/php5>
+  #include <abstractions/web-data>
+
+  capability dac_override,
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+  capability sys_chroot,
+  capability sys_resource,
+
+
+  deny /usr/bin/pacman r,
+
+  /bin/bash mix,
+  /bin/cat mix,
+  /bin/egrep r,
+  /bin/zsh mix,
+  /etc/lighttpd r,
+  /etc/lighttpd/*.conf r,
+  /etc/lighttpd/auth.d/* r,
+  /etc/lighttpd/conf.d/*.conf r,
+  /etc/lighttpd/vhosts.d r,
+  /etc/lighttpd/vhosts.d/* r,
+  /etc/php/conf.d/ r,
+  /etc/php/php.ini r,
+  /etc/ssl/private/*.pem r,
+  /run/lighttpd/* w,
+  /srv/http/ r,
+  /srv/http/** r,
+  /tmp/* rw,
+  /usr/bin/php-cgi Cx,
+  /usr/lib/lighttpd/*.so mr,
+  /usr/lib64/lighttpd/*.so mr,
+  /usr/sbin/lighttpd mix,
+  /var/cache/lighttpd/ r,
+  /var/cache/lighttpd/** rwl,
+  /var/lib/lighttpd/ r,
+  /var/lib/lighttpd/** rwl,
+  /var/log/lighttpd/*.log rw,
+  /{,var/}run/lighttpd.pid rwl,
+
+
+  profile /usr/bin/php-cgi {
+    #include <abstractions/base>
+
+
+
+    /etc/* r,
+    /etc/php/** r,
+    /lib/lib*so* mr,
+    /srv/http/ r,
+    /srv/http/** r,
+    /tmp/* rwk,
+    /usr/bin/php-cgi r,
+    /usr/lib/lib*so* mr,
+    /usr/lib{,32,64}/** mr,
+
+  }
+}

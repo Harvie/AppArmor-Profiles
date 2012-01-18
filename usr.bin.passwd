@@ -1,0 +1,35 @@
+# vim:syntax=apparmor
+# Last Modified: Sat Jan  6 09:35:33 2007
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2006 Volker Kuhlmann
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/bin/passwd {
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+
+  capability chown,
+  capability sys_resource,
+
+  /etc/.pwd.lock w,
+  /etc/pwdutils/logging r,
+  /etc/shadow rwl,
+  /etc/shadow.old rwl,
+  /etc/shadow.tmp?????? rwl,
+  /usr/bin/passwd mr,
+  /usr/lib/pwdutils/lib*.so* mr,
+  /usr/lib64/pwdutils/lib*.so* mr,
+  /usr/share/cracklib/pw_dict.hwm r,
+  /usr/share/cracklib/pw_dict.pwd r,
+  /usr/share/cracklib/pw_dict.pwi r,
+}

@@ -1,0 +1,22 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/bin/fam {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  /tmp/.fam*		wl,
+  /etc/mtab		rw,
+  /usr/bin/fam          rmix,
+  # it makes some level of sense for FAM to read all files on the
+  # filesystem, even if this is a little unfortunate.
+  /** 			r,
+}

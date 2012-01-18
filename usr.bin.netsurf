@@ -1,0 +1,21 @@
+# Last Modified: Wed Jan 18 10:06:57 2012
+#include <tunables/global>
+
+/usr/bin/netsurf {
+  #include <abstractions/base>
+  #include <abstractions/fonts>
+  #include <abstractions/gnome>
+
+
+
+  /etc/* r,
+  /home/*/.Xauthority r,
+  /home/*/.gtkrc-2.0 r,
+  /home/*/.icons/** r,
+  /home/*/.netsurf/* rw,
+  /home/*/.themes/** r,
+  /opt/kde/share/** r,
+  /sys/** r,
+  /usr/share/** r,
+
+}

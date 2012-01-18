@@ -1,0 +1,18 @@
+# Last Modified: Wed Jan 18 14:01:31 2012
+#include <tunables/global>
+
+/usr/sbin/minidlna {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+
+
+
+  /bin/bash rix,
+  /etc/minidlna.conf r,
+  /home/*/** r,
+  /proc/sys/** r,
+  /run/minidlna.pid rw,
+  /sys/devices/system/** r,
+  /tmp/** rwk,
+
+}

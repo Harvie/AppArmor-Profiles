@@ -1,0 +1,60 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# vim:syntax=apparmor
+# Last Modified: Wed Aug 24 16:21:32 2005
+
+#include <tunables/global>
+
+/usr/X11R6/bin/acroread {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/fonts>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/gnome>
+  #include <abstractions/X>
+
+  capability dac_override,
+
+  /bin/basename mixr,
+  /bin/bash mix,
+  /bin/cat mixr,
+  /bin/grep mixr,
+  /bin/uname mixr,
+  /etc/** r,
+
+  @{HOME}/.adobe/** rw,
+  @{HOME}/Desktop/** rw,
+  @{HOME}/Documents/* rw,
+  @{HOME}/.fonts.cache-* r,
+  @{HOME}/.gconfd/saved_state lrw,
+  @{HOME}/.gconfd/saved_state.orig lw,
+  @{HOME}/.gconfd/saved_state.tmp lrw,
+  @{HOME}/.gconf r,
+  @{HOME}/.gconf/.testing.writeability lw,
+  @{HOME}/* rw,
+
+  /usr/bin/acroread Pxr,
+  /usr/bin/gconftool-2 mixr,
+  /usr/lib/firefox/firefox.sh Pxr,
+  /usr/lib/GConf/** r,
+  /usr/lib/GConf/2/gconfd-2 Pxr,
+  /usr/share/icons r,
+  /usr/share/icons/hicolor/icon-theme.cache r,
+  /usr/share/pixmaps r,
+  /usr/lib/Acrobat7/Reader/intellinux/lib/**so* mixr,
+  /usr/bin/cut mixr,
+  /usr/bin/dirname mixr,
+  /usr/bin/which mixr,
+  /usr/lib/jvm/java-*/jre/lib/fonts/** r,
+  /usr/lib/ooo-*/share/fonts/** r,
+  /usr/share/icons r,
+}

@@ -1,0 +1,139 @@
+# Last Modified: Wed Jan 18 10:55:22 2012
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# will need to revalidate this profile once we finish re-architecting
+# the change_hat patch.
+#
+
+#include <tunables/global>
+
+/usr/sbin/sshd {
+  #include <abstractions/authentication>
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+  #include <abstractions/wutmp>
+
+
+  capability audit_control,
+  capability chown,
+  capability dac_override,
+  capability fowner,
+  capability fsetid,
+  capability kill,
+  capability net_bind_service,
+  capability setgid,
+  capability setuid,
+  capability sys_chroot,
+  capability sys_resource,
+  capability sys_tty_config,
+
+
+  /bin/ash rUx,
+  /bin/bash rUx,
+  /bin/bash2 rUx,
+  /bin/bsh rUx,
+  /bin/csh rUx,
+  /bin/ksh rUx,
+  /bin/sh rUx,
+  /bin/tcsh rUx,
+  /bin/zsh rUx,
+  /dev/ptmx rw,
+  /dev/pts/[0-9]* rw,
+  /dev/urandom r,
+  /etc/** r,
+  /proc/*/oom_adj rw,
+  /proc/*/oom_score_adj rw,
+  /sbin/nologin rUx,
+  /tmp/ssh-*/agent.[0-9]* rwl,
+  /tmp/ssh-*[0-9]*/ w,
+  /usr/sbin/sshd mrix,
+  /var/log/* rw,
+  /{,var/}run w,
+  /{,var/}run/sshd{,.init}.pid wl,
+  @{HOME}/.ssh/authorized_keys{,2} r,
+  @{PROC}/[0-9]*/fd/ r,
+  @{PROC}/[0-9]*/loginuid w,
+  @{PROC}/[0-9]*/mounts r,
+
+
+  ^AUTHENTICATED {
+    #include <abstractions/authentication>
+    #include <abstractions/consoles>
+    #include <abstractions/nameservice>
+    #include <abstractions/wutmp>
+
+    capability setgid,
+    capability setuid,
+    capability sys_tty_config,
+
+
+    /dev/log w,
+    /dev/ptmx rw,
+    /etc/default/passwd r,
+    /etc/localtime r,
+    /etc/login.defs r,
+    /etc/motd r,
+    /tmp/ssh-*/agent.[0-9]* rwl,
+    /tmp/ssh-*[0-9]*/ w,
+
+  }
+
+  ^EXEC {
+    #include <abstractions/base>
+
+
+    /bin/ash Ux,
+    /bin/bash Ux,
+    /bin/bash2 Ux,
+    /bin/bsh Ux,
+    /bin/csh Ux,
+    /bin/ksh Ux,
+    /bin/sh Ux,
+    /bin/tcsh Ux,
+    /bin/zsh Ux,
+    /sbin/nologin Ux,
+
+  }
+
+  ^PRIVSEP {
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+
+    capability setgid,
+    capability setuid,
+    capability sys_chroot,
+
+
+
+  }
+
+  ^PRIVSEP_MONITOR {
+    #include <abstractions/authentication>
+    #include <abstractions/base>
+    #include <abstractions/nameservice>
+    #include <abstractions/wutmp>
+
+    capability chown,
+    capability setgid,
+    capability setuid,
+
+
+    /dev/ptmx rw,
+    /dev/pts/[0-9]* rw,
+    /dev/urandom r,
+    /etc/hosts.allow r,
+    /etc/hosts.deny r,
+    /etc/ssh/moduli r,
+    @{HOME}/.ssh/authorized_keys{,2} r,
+    @{PROC}/[0-9]*/mounts r,
+
+  }
+}

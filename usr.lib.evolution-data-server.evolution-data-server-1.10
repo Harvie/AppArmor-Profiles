@@ -1,0 +1,40 @@
+# vim:syntax=apparmor
+# Last Modified: Wed Sep  7 07:44:21 2005
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/lib/evolution-data-server/evolution-data-server-1.10 {
+  #include <abstractions/base>
+  #include <abstractions/nameservice>
+  #include <abstractions/user-tmp>
+
+  /etc/mtab r,
+  /etc/** r,
+
+  @{HOME}/.evolution/addressbook/local/** lrw,
+  @{HOME}/.evolution/cache/calendar/** lrw,
+  @{HOME}/.evolution/calendar/local/** lrw,
+  @{HOME}/.evolution/tasks/local/** lrw,
+  @{HOME}/.gconf r,
+  @{HOME}/.gconf/** lrw,
+  @{HOME}/.gnome2_private w,
+
+  /usr/lib/GConf/**.so mr,
+  /usr/lib/GConf/2/gconfd-2 Pxr,
+  /usr/lib64/GConf/2/gconfd-2 Pxr,
+  /usr/lib/evolution-data-server/evolution-data-server-* rmix,
+  /usr/lib/evolution-data-server*/extensions r,
+  /usr/lib/evolution-data-server*/extensions/lib*.so r,
+  /usr/lib/gnome-vfs** mr,
+  /usr/share/evolution-data-server*/** mr,
+
+}

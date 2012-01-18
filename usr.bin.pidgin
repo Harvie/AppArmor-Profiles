@@ -1,0 +1,80 @@
+# Last Modified: Wed Jan 18 12:29:15 2012
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+
+#include <tunables/global>
+
+/usr/bin/pidgin {
+  #include <abstractions/audio>
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/gnome>
+  #include <abstractions/kde>
+  #include <abstractions/nameservice>
+  #include <abstractions/perl>
+  #include <abstractions/user-tmp>
+
+  deny capability sys_ptrace,
+
+
+  deny /usr/share/enchant/enchant.ordering r,
+
+  /bin/bash rix,
+  /dev/random r,
+  /etc/esd.conf r,
+  /etc/pango/pango.modules r,
+  /etc/pango/pango64.modules r,
+  /home/** mrwk,
+  /home/harvie/private/dotfiles/.purple/answerscripts px,
+  /opt/MozillaFirefox/bin/firefox.sh Px,
+  /opt/kde/share/** r,
+  /opt/kde3/bin/kde-config mrix,
+  owner /tmp/** rwlk,
+  /tmp/** m,
+  /usr/X11R6/lib/Acrobat*/Resource/Font/* r,
+  /usr/X11R6/lib/Acrobat*/Resource/Font/PFM/* r,
+  /usr/bin/pidgin mrix,
+  /usr/bin/purple-remote r,
+  /usr/lib/GConf/2/gconfd-2 Px,
+  /usr/lib/ao/plugins-* r,
+  /usr/lib/aspell-** mr,
+  /usr/lib/jvm/java-*/jre/lib/fonts/** r,
+  /usr/lib/ooo-*/share/fonts/** r,
+  /usr/lib/tcl*/encoding/* r,
+  /usr/lib64/ao/plugins-* r,
+  /usr/lib64/aspell-* r,
+  /usr/lib{,32,64}/** mr,
+  /usr/share/*/ r,
+  /usr/share/alsa/alsa.conf r,
+  /usr/share/icons r,
+  /usr/share/icons/** r,
+  /usr/share/pixmaps r,
+  /usr/share/pixmaps/pidgin/** r,
+  /usr/share/sounds/pidgin/* r,
+  /usr/share/tcl/tcl*/encoding/* r,
+  /usr/share/themes/** r,
+  /var/db/nscd/* r,
+  /{,var/}run/.resmgr_socket w,
+  @{HOME}/.fonts r,
+  @{HOME}/.gnome2/nautilus-sendto/* rw,
+  @{HOME}/.gtk_qt_engine_rc r,
+  @{HOME}/.icons/** r,
+  @{HOME}/.kde/share/config/gtkrc-* r,
+  @{HOME}/.mcop/random-seed rw,
+  @{HOME}/.mcoprc r,
+  @{HOME}/.purple r,
+  @{HOME}/.purple/** rwl,
+  @{HOME}/.themes/** r,
+  @{HOME}/private/dotfiles/.purple r,
+  @{HOME}/private/dotfiles/.purple/** rwl,
+  @{PROC}/*/cmdline r,
+
+}

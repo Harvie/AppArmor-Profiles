@@ -1,0 +1,41 @@
+# vim:syntax=apparmor
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# evolution, amongst other things, calls this program. I didn't want to
+# give evolution access to significant chunks of /proc
+#
+
+#include <tunables/global>
+
+/bin/netstat {
+  #include <abstractions/base>
+  #include <abstractions/consoles>
+  #include <abstractions/nameservice>
+
+  capability dac_override,
+  capability dac_read_search,
+  deny capability sys_ptrace,
+
+  /bin/netstat rmix,
+  /etc/networks r,
+  @{PROC} r,
+  @{PROC}/[0-9]*/cmdline r,
+  @{PROC}/[0-9]*/fd r,
+  @{PROC}/net r,
+  @{PROC}/net/* r,
+  @{PROC}/*/fd/ r,
+  owner @{PROC}/*/net/raw r,
+  owner @{PROC}/*/net/raw6 r,
+  owner @{PROC}/*/net/tcp r,
+  owner @{PROC}/*/net/tcp6 r,
+  owner @{PROC}/*/net/udp r,
+  owner @{PROC}/*/net/udp6 r,
+  owner @{PROC}/*/net/unix r,
+}

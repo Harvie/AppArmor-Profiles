@@ -1,0 +1,68 @@
+# ------------------------------------------------------------------
+#
+#    Copyright (C) 2002-2005 Novell/SUSE
+#
+#    This program is free software; you can redistribute it and/or
+#    modify it under the terms of version 2 of the GNU General Public
+#    License published by the Free Software Foundation.
+#
+# ------------------------------------------------------------------
+# vim:syntax=apparmor
+
+#include <tunables/global>
+
+/usr/lib/man-db/man flags=(complain) {
+  #include <abstractions/base>
+  #include <abstractions/bash>
+  #include <abstractions/consoles>
+  #include <abstractions/user-manpages>
+
+  /bin/bash rmix,
+  /bin/cat rmix,
+  /bin/gunzip rmix,
+  /bin/mktemp rmix,
+  /bin/more rmix,
+  /bin/rm rmix,
+
+  /etc/groff/man.local r,
+  /etc/lesskey.bin r,
+  /etc/manpath.config r,
+  /etc/man.config r,
+  /etc/papersize r,
+  /etc/termcap r,
+
+  /tmp/nroff.** rw,
+
+  /usr/man/** r,
+  /usr/bin/apropos Px,
+  /usr/bin/cmp rmix,
+  /usr/bin/getopt rmix,
+  /usr/bin/groff rmix,
+  /usr/bin/grops rmix,
+  /usr/bin/grotty rmix,
+  /usr/bin/iconv rmix,
+  /{usr/,}bin/less rmix,
+  /usr/bin/locale rmix,
+  /usr/bin/man rmix,
+  /usr/bin/nroff rmix,
+  /usr/bin/preconv rmix,
+  /usr/bin/tbl rmix,
+  /usr/bin/troff rmix,
+  /usr/bin/zsoelim rmix,
+  /usr/lib/man-db/man rmix,
+  /usr/lib/man-db/manconv rmix,
+  /usr/local/man/ r,
+  /usr/local/man/** r,
+  /usr/local/share/man/ r,
+  /usr/local/share/man/** r,
+  /usr/share/groff/** r,
+  /usr/share/locale-bundle/** r,
+  /usr/share/man/ r,
+  /usr/share/man/** r,
+  /usr/share/terminfo/** r,
+  /usr/share/texmf/teTeX/man/** r,
+
+  /var/cache/man/** rk,
+
+  owner @{HOME}/.lesshst rw,
+}
