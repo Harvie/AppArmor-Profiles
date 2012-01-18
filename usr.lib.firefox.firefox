@@ -11,7 +11,7 @@
   deny /dev/tty rw,
 
   / r,
-  /bin/ps r,
+  /bin/ps mrix,
   /etc/** r,
   /home/*/ r,
   /home/*/.Xauthority r,

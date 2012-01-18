@@ -13,7 +13,7 @@
 
 
   / r,
-  /bin/ps r,
+  /bin/ps mrix,
   /dev/ r,
   /dev/**/ r,
   /etc/** r,

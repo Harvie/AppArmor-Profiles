@@ -24,7 +24,7 @@
 
 
 
-  /bin/ps r,
+  /bin/ps mrix,
   /dev/shm/* rw,
   /etc/** r,
   /home/*/* r,

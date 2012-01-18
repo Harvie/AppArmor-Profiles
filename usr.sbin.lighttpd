@@ -26,12 +26,8 @@
   capability sys_chroot,
   capability sys_resource,
 
-
-  deny /usr/bin/pacman r,
-
   /bin/bash mix,
   /bin/cat mix,
-  /bin/egrep r,
   /bin/zsh mix,
   /etc/lighttpd r,
   /etc/lighttpd/*.conf r,
