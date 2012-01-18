@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 14:53:30 2012
+# Last Modified: Wed Jan 18 18:04:03 2012
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2005 Novell/SUSE
@@ -12,7 +12,7 @@
 
 #include <tunables/global>
 
-/usr/bin/man flags=(complain) {
+/usr/bin/man {
   #include <abstractions/base>
   #include <abstractions/bash>
   #include <abstractions/consoles>
@@ -38,6 +38,7 @@
   /opt/qt/man/* rk,
   /opt/qt/man/*/ r,
   /root/.lesshst w,
+  /usr/bin/groff rix,
   /usr/bin/locale rix,
   /usr/bin/nroff rix,
   /usr/bin/preconv rix,

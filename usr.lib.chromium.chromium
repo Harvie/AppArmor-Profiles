@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 15:27:42 2012
+# Last Modified: Wed Jan 18 18:05:11 2012
 # Author: Thomas Mudrunka
 
 #include <tunables/global>
@@ -36,8 +36,9 @@
   /home/*/.mozilla/** r,
   /home/*/.pki/** rwk,
   /home/*/.themes/** r,
+  /home/*/Downloads/** rw,
   /home/*/Work/GIT/plugins/chrome-extensions/** r,
-  /home/*/private/dotfiles/.config/chromium/** rwk,
+  /home/*/private/dotfiles/.config/chromium/** mrwk,
   /opt/java/** mr,
   /opt/kde/share/** r,
   /proc/ r,
