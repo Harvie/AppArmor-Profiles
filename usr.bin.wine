@@ -1,0 +1,15 @@
+# Last Modified: Thu Jan 19 09:10:27 2012
+#include <tunables/global>
+
+/usr/bin/wine flags=(complain) {
+  #include <abstractions/base>
+
+
+
+  /home/*/.wine/drive_c/ rw,
+  /home/*/.wine/drive_c/** rw,
+  /home/*/Emulation/**/ r,
+  /usr/bin/wine mr,
+  /usr/bin/wine-preloader rix,
+
+}
