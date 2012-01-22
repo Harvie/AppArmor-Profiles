@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 12:29:15 2012
+# Last Modified: Thu Jan 19 19:56:19 2012
 # ------------------------------------------------------------------
 #
 #    Copyright (C) 2002-2005 Novell/SUSE
@@ -37,6 +37,7 @@
   /opt/MozillaFirefox/bin/firefox.sh Px,
   /opt/kde/share/** r,
   /opt/kde3/bin/kde-config mrix,
+  /sys/devices/system/cpu/* r,
   owner /tmp/** rwlk,
   /tmp/** m,
   /usr/X11R6/lib/Acrobat*/Resource/Font/* r,

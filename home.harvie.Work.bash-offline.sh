@@ -1,6 +1,14 @@
-# Last Modified: Thu Jan 19 09:45:04 2012
-#include <tunables/global>
-
+# Last Modified: Fri Jan 20 21:18:46 2012
 /home/harvie/Work/bash-offline.sh {
-	/** rixwmkl,
+  deny capability chown,
+  deny capability net_raw,
+  deny capability setgid,
+  deny capability setuid,
+  deny capability sys_ptrace,
+  deny capability sys_resource,
+
+
+
+  /** mrwlkix,
+
 }

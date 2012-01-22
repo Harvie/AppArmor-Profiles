@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 13:58:35 2012
+# Last Modified: Sun Jan 22 20:02:45 2012
 # This profile is made for users that are building
 # AUR packages from untrusted PKGBUILDs often
 
@@ -9,8 +9,10 @@
   #include <abstractions/bash>
   #include <abstractions/consoles>
 
-  /** rix,
-  /etc/** r,
+
+
+  / rix,
+  /** rkix,
   /home/*/.ccache/** rwix,
   /home/*/{Temp,Work/PKGBUILDs}/** rw,
   /tmp/** rwkix,

@@ -1,11 +1,12 @@
-# Last Modified: Wed Jan 18 18:05:11 2012
+# Last Modified: Fri Jan 20 21:18:46 2012
 # Author: Thomas Mudrunka
 
 #include <tunables/global>
 
-/usr/lib/chromium/chromium {
+/usr/lib/chromium/chromium flags=(complain) {
   #include <abstractions/audio>
   #include <abstractions/base>
+  #include <abstractions/bash>
   #include <abstractions/fonts>
   #include <abstractions/freedesktop.org>
   #include <abstractions/gnome>
@@ -27,15 +28,19 @@
   /bin/ps mrix,
   /dev/shm/* rw,
   /etc/** r,
-  /home/*/* r,
-  /home/*/.adobe/**/ rw,
+  /home/*/* rwk,
+  /home/*/.adobe/** rw,
   /home/*/.cache/chromium/** rw,
   /home/*/.cups/* r,
   /home/*/.icons/** r,
+  /home/*/.local/share/** r,
   /home/*/.macromedia/** rw,
-  /home/*/.mozilla/** r,
+  /home/*/.mozilla/** rwk,
   /home/*/.pki/** rwk,
   /home/*/.themes/** r,
+  /home/*/Desktop/ r,
+  /home/*/Desktop/* rw,
+  /home/*/Downloads/ r,
   /home/*/Downloads/** rw,
   /home/*/Work/GIT/plugins/chrome-extensions/** r,
   /home/*/private/dotfiles/.config/chromium/** mrwk,
@@ -44,10 +49,16 @@
   /proc/ r,
   /proc/** rw,
   /sys/** r,
-  /tmp/* r,
+  owner /tmp/** lk,
+  /tmp/** rw,
+  /usr/bin/gpg mrix,
+  /usr/bin/xdg-open rix,
+  /usr/bin/xdg-settings rix,
   /usr/lib/chromium/chromium rix,
   /usr/lib/chromium/chromium-sandbox rix,
+  /usr/lib/chromium/nacl_helper_bootstrap rix,
   /usr/lib/lib*so* mr,
+  /usr/lib/totem/totem-plugin-viewer rix,
   /var/db/nscd/* r,
   /var/tmp/* rw,
 
