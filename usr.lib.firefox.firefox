@@ -1,4 +1,4 @@
-# Last Modified: Wed Jan 18 13:50:50 2012
+# Last Modified: Tue Jan 24 17:04:48 2012
 #include <tunables/global>
 
 /usr/lib/firefox/firefox {
@@ -31,6 +31,7 @@
   /home/*/Temp/** rwk,
   /opt/java/** r,
   /opt/kde/share/** r,
+  /proc/ r,
   /proc/** r,
   /sys/devices/system/cpu/ r,
   /sys/devices/system/cpu/* r,

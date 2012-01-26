@@ -13,9 +13,9 @@
 
   / rix,
   /** rkix,
-  /home/*/.ccache/** rwix,
-  /home/*/{Temp,Work/PKGBUILDs}/** rw,
-  /tmp/** rwkix,
-  /var/abs/local/** rwkix,
+  /home/*/.ccache/** rwixlk,
+  /home/*/{Temp,Work/PKGBUILDs}/** rwlk,
+  /tmp/** rwkixlk,
+  /var/abs/local/** rwkixlk,
 
 }
